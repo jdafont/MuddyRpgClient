@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ConnectPrompt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Node2.gd" type="Script" id=5]
+
+[node name="World" type="Node2D"]
+
+[node name="ConnectPrompt" parent="." instance=ExtResource( 1 )]
+
+[node name="DebugNode" type="Node" parent="."]
+script = ExtResource( 5 )
