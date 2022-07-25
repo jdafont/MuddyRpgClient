@@ -5,6 +5,8 @@ var port = 8083
 
 const Client = preload("res://Networking/Client.gd")
 const InitUserRequest = preload("res://Networking/Packets/InitUserRequest.gd")
+const InitUserResponse = preload("res://Networking/Packets/InitUserResponse.gd")
+
 var client: Client
 var username: String
 
@@ -33,5 +35,12 @@ func _on_disconnected():
 	pass
 func _on_error():
 	pass
-func _on_data(data: String):
-	print("Got data! " + data)
+func _on_data(data: PoolByteArray):
+	print("Got data! " + var2str(data))
+	var buf = StreamPeerBuffer.new()
+	buf.data_array = data
+	var packet_id = buf.get_u32()
+	if packet_id == 1:
+		var packet = InitUserResponse.new()
+		packet.deserialize(buf)
+		print("Packet is a InitUserResponse! ObjectId is " + str(packet.ObjectId))

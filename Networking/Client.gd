@@ -50,5 +50,5 @@ func _process(delta: float) -> void:
 		var available_bytes: int = _stream.get_available_bytes()
 		if available_bytes > 0:
 			print("available bytes: ", available_bytes)
-			var data: String = _stream.get_utf8_string()
-			emit_signal("data", data)
+			var data = _stream.get_data(available_bytes)
+			emit_signal("data", data[1])
