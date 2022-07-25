@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ConnectPrompt.gd" type="Script" id=1]
-[ext_resource path="res://UiTheme.tres" type="Theme" id=2]
-[ext_resource path="res://DefaultFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://MainMenu/ConnectPrompt.gd" type="Script" id=1]
+[ext_resource path="res://MainMenu/UiTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Fonts/DefaultFont.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Theme" id=1]
 
