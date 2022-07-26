@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MobileName.gd" type="Script" id=1]
+[ext_resource path="res://Mobile.gd" type="Script" id=2]
+[ext_resource path="res://Player/icon.png" type="Texture" id=3]
+
+[node name="Mobile" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+script = ExtResource( 2 )
+
+[node name="Name" type="Label" parent="."]
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 32.0
+margin_bottom = -32.0
+grow_horizontal = 2
+text = "Player"
+align = 1
+valign = 1
+script = ExtResource( 1 )

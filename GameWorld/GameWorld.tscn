@@ -19,16 +19,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Player" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 script = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="Sprite"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
-[node name="PlayerName" type="Label" parent="Sprite"]
+[node name="PlayerName" type="Label" parent="Player"]
 margin_left = -32.0
 margin_top = -48.0
 margin_right = 32.0

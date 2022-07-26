@@ -49,6 +49,5 @@ func _process(delta: float) -> void:
 	if _status == _stream.STATUS_CONNECTED:
 		var available_bytes: int = _stream.get_available_bytes()
 		if available_bytes > 0:
-			print("available bytes: ", available_bytes)
 			var data = _stream.get_data(available_bytes)
 			emit_signal("data", data[1])

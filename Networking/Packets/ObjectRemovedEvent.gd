@@ -1,8 +1,9 @@
 extends "res://Networking/Packets/Packet.gd"
 
-var ObjectId: int = 0
+var ObjectId
+
 func _init():
-	type = Const.PacketType.InitUserResponse
+	type = Const.PacketType.ObjectRemovedEvent
 	
 func serialize():
 	pass

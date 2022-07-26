@@ -1,16 +1,18 @@
 extends "res://Networking/Packets/Packet.gd"
 
-var UpdatedPosition = Vector2(0, 0)
-var Confirm = false
+var Position = Vector2(0, 0)
+var ObjectId
+var Name
 
 func _init():
-	type = Const.PacketType.MovementResponse
+	type = Const.PacketType.NewObjectEvent
 	
 func serialize():
 	pass
 	
 func deserialize(buf: StreamPeerBuffer):
-	Confirm = buf.get_u8() == 1
+	ObjectId = buf.get_u32()
 	var x = buf.get_float()
 	var y = buf.get_float()
-	UpdatedPosition = Vector2(x, y)
+	Name = buf.get_utf8_string()
+	Position = Vector2(x, y)

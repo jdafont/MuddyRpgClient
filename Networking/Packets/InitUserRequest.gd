@@ -10,8 +10,5 @@ func serialize():
 	buf.put_utf8_string(Username)
 	return buf.data_array
 	
-func deserialize(bytes):
-	var result = StreamPeerBuffer.new()
-	result.data_array = bytes
-	var s = result.get_utf8_string()
-	Username = s
+func deserialize(buf: StreamPeerBuffer):
+	Username = buf.get_utf8_string()

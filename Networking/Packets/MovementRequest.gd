@@ -1,19 +1,24 @@
 extends "res://Networking/Packets/Packet.gd"
 
-var Position = Vector2(0, 0)
+var Up
+var Down
+var Left
+var Right
 
 func _init():
 	type = Const.PacketType.MovementRequest
 
 func serialize():
 	var buf = StreamPeerBuffer.new()
-	buf.put_f32(Position.x)
-	buf.put_f32(Position.y)
+	buf.put_u32(type)
+	buf.put_u8(Up)
+	buf.put_u8(Down)
+	buf.put_u8(Left)
+	buf.put_u8(Right)
 	return buf.data_array
 	
-func deserialize(bytes):
-	var result = StreamPeerBuffer.new()
-	result.data_array = bytes
-	var x = result.get_f32()
-	var y = result.get_f32()
-	Position = Vector2(x, y)
+func deserialize(buf):
+	Up = buf.get_u8()
+	Down = buf.get_u8()
+	Left = buf.get_u8()
+	Right = buf.get_u8()

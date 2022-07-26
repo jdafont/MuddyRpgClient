@@ -12,6 +12,7 @@ var username: String
 
 signal player_init(username, object_id)
 signal packet_received(packet)
+signal disconnected
 
 func _ready():
 	client = Client.new()
@@ -36,17 +37,24 @@ func _on_connected():
 	pass
 	
 func _on_disconnected():
+	emit_signal("disconnected")
 	pass
 	
 func _on_error():
 	pass
 	
 func _on_data(data: PoolByteArray):
-	print("Got data! " + var2str(data))
-	var frame = PacketFrame.new()
-	var packet = frame.deserialize_packet(data)
-	
-	if packet.type == Const.PacketType.InitUserResponse:
-		emit_signal("player_init", self.username, packet.ObjectId)
-	else: 
-		emit_signal("packet_received", packet)
+	var buf = StreamPeerBuffer.new()
+	buf.data_array = data
+	while buf.get_available_bytes() > 0:
+		var frame = PacketFrame.new()
+		var packet = frame.deserialize_packet(buf)
+		
+		if packet.type == Const.PacketType.InitUserResponse:
+			emit_signal("player_init", self.username, packet.ObjectId)
+		else:
+			emit_signal("packet_received", packet)
+
+func send_packet(packet):
+	var data = packet.serialize()
+	client.send(data)
